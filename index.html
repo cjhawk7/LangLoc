@@ -16,25 +16,27 @@
   </head>
   <body>
     <header>
-      <h1 class = title-header>Language Demographics</h1>
+      <h1 class = title-header>Language Locator</h1>
     </header>
     <div id="map"></div>
       <div class="row">
         <label>
         <form action="#" class="js-search-form">
-         <input type="text" class="js-query" placeholder="search here...">
-        <button type="submit">Search</button>   
+         <input type="text" class="js-query" placeholder="search a language..." onfocus="this.placeholder = '' ">
+        <button type="submit" class="button">GO</button>   
         </form>
         </label>
-        <h2>Results</h2>
         <main role="main" class="js-search-results" hidden>
         </main>
         </div>
 
       <script src="index.js"></script>
+      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>  
     <script src="markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsuYMNTF8_0AiUIbgZLhT_AJkZZJxP7dc&callback=initMap"
               type="text/javascript"></script>
+     
 
   </body>
 </html>

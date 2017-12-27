@@ -61,7 +61,7 @@ const myLookupObjects = {
     "Tadzhik": 660,
     "Ossete": 661,
     "India n.e.c.": 662,
-    "Hindi": 663,
+     "Hindi": 663,
     "Bengali": 664,
     "Panjabi": 665,
     "Marathi": 666,
@@ -388,15 +388,19 @@ const myLookupObjects = {
     "Specified Not Listed": 998,
     "Not Specified": 999,
 };
-    
-    Object.keys(myLookupObjects)
+
+Object.keys(myLookupObjects)
     //console.log(Object.keys(myLookupObjects));
     
     $('.js-query').autocomplete({
-      source: Object.keys(myLookupObjects)
+      source: Object.keys(myLookupObjects),
+      minLength: 2,
+      classes: {
+      "ui-autocomplete": "highlight",
+      }
+      
     });
     
-
 
 function getDataFromApi(searchTerm, callback) {
     let langCode = myLookupObjects[searchTerm]
@@ -427,7 +431,7 @@ let markerArray = []
 
 function geocodeCallback(cityData, arrayLength) {
    return function markerLoc(results, status) {
-        console.log(`${cityData.stats}: ${results.json.results[0].geometry.location}`)
+      //  console.log(`${cityData.stats}: ${results.json.results[0].geometry.location}`)
         if (status === 'success') {
             var marker = new google.maps.Marker({
             map: map,
@@ -435,7 +439,7 @@ function geocodeCallback(cityData, arrayLength) {
             label: cityData.stats
             });
             markerArray.push(marker)
-            console.log(markerArray)
+          //  console.log(markerArray)
     
 
         if (markerArray.length === arrayLength) {   
@@ -501,10 +505,11 @@ function displayCensusSearchData(data) {
             cityname: (data[globalI + i][0]) 
  
             }
-            geocodeAddress(cityData.cityname, geocodeCallback(cityData, data.length));
+            geocodeAddress(cityData.cityname, geocodeCallback(cityData, data.length - 2));
         }
         globalI = globalI + i
-        setTimeout(geoCode, 1000)
+        
+        setTimeout(geoCode, 500)
     }
 }
 
@@ -526,8 +531,3 @@ function displayCensusSearchData(data) {
 
     }
 }
-
-
-    
-   
-      

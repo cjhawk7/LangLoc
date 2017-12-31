@@ -451,12 +451,13 @@ function geocodeCallback(cityData, arrayLength) {
     } 
 
 }
-    // var markers = locations.map(function(location, i) {
-    //     return new google.maps.Marker({
-    //     position: location,
-    //     label: labels[i % labels.length]
-    //     });
-    // });
+ 
+function RemoveAllMarkers() {
+    while (markerArray.length > 0) {
+        markerArray.pop().setMap(null);
+    }
+    markerArray.length = 0;
+}
     
 
 
@@ -485,9 +486,11 @@ function displayCensusSearchData(data) {
  //call geocoder to convert cityStateString to latlong
  //data[i][0] is === cityStateString
 
-    setTimeout(geoCode, 0)
-
-
+  
+   globalI = 0
+    
+    geoCode()
+    
     function geoCode() {
         console.log(globalI)
         if (globalI === data.length) {

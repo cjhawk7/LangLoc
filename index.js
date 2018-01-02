@@ -389,18 +389,38 @@ const myLookupObjects = {
     "Not Specified": 999,
 };
 
-Object.keys(myLookupObjects)
-    //console.log(Object.keys(myLookupObjects));
-    
-    $('.js-query').autocomplete({
-      source: Object.keys(myLookupObjects),
-      minLength: 2,
-      classes: {
-      "ui-autocomplete": "highlight",
-      }
-      
+let globalI = 0
+let completedGeocode = 0
+let markerArray = []
+let markerCluster;
+let uluru = {lat: 34.0489, lng: -111.0937};
+let map;
+
+
+initMap = function() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 3,
+        center: uluru
     });
     
+    const queryTarget = $('.js-query');
+    queryTarget.val()
+    $(watchSubmit);
+}
+
+
+
+function watchSubmit() {
+  $('.js-search-form').submit(event => {
+    event.preventDefault();
+    RemoveAllMarkers();
+    globalI = 0
+    completedGeocode = 0
+    const queryTarget = $(event.currentTarget).find('.js-query');
+    const query = queryTarget.val();
+    getDataFromApi(query, geoCode);
+  });
+}   
 
 function getDataFromApi(searchTerm, callback) {
     let langCode = myLookupObjects[searchTerm]
@@ -414,123 +434,110 @@ function getDataFromApi(searchTerm, callback) {
     $.ajax(settings);
 }
 
+// called only on success from census bureau API
 
-//this return data from US census api
+function geoCode(censusData) {
+    console.log(globalI, censusData)
 
-initMap = function(){
-    const queryTarget = $('.js-query');
-    const query = queryTarget.val();
+    if (globalI === censusData.length) {
+        return
+    }      
 
-    var uluru = {lat: 34.0489, lng: -111.0937};
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 3,
-        center: uluru
-    });
+    let i;
+    let limit = 50
+    if (censusData.length - globalI < limit) {
+        limit = censusData.length - globalI
+    }
+    for (i = 0; i < limit; i++) {
+        let cityData = {
+        stats: (censusData[globalI + i][1]),
+        cityname: (censusData[globalI + i][0]) 
 
-let markerArray = []
+        }
+        geocodeAddress(cityData.cityname, geocodeCallback(cityData, censusData.length));
+    }
+    globalI = globalI + i
+    
+    setTimeout(geoCode.bind(this, censusData), 500)
+}
+
+function geocodeAddress(cityStateString, callback) {
+    let urlString = `https://google-maps-geocoding-api-pfpkeizllh.now.sh`
+    const param = {
+ 
+    data: {
+         address: cityStateString,
+         key: 'AIzaSyAsuYMNTF8_0AiUIbgZLhT_AJkZZJxP7dc',
+         },
+        url: urlString,
+        dataType: 'json',
+        type: 'GET',
+        success: callback,
+    };
+    $.ajax(param);
+
+}
 
 function geocodeCallback(cityData, arrayLength) {
+
    return function markerLoc(results, status) {
-      //  console.log(`${cityData.stats}: ${results.json.results[0].geometry.location}`)
+        console.log("here")
+        console.log(results.json.results[0].geometry.location)
+        //console.log(`${cityData.stats}: ${results.json.results[0].geometry.location}`)
+        completedGeocode++
         if (status === 'success') {
             var marker = new google.maps.Marker({
             map: map,
             position: results.json.results[0].geometry.location,
-            label: cityData.stats
+            label: cityData.stats,
+            title: 'Click to zoom'
             });
             markerArray.push(marker)
-          //  console.log(markerArray)
-    
-
-        if (markerArray.length === arrayLength) {   
-            var markerCluster = new MarkerClusterer(map, markerArray,
-            {imagePath: './m'});
-        }
+          
+            if (completedGeocode === arrayLength) {   
+                markerCluster = new MarkerClusterer(map, markerArray,
+                {imagePath: './m'});
+            }
 
         }
+
+        var contentString = `<h2>${cityData.stats}</h2>`
+
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
     } 
 
 }
- 
+
+
+      
+
 function RemoveAllMarkers() {
+    if (markerCluster !== undefined) {
+       //markerCluster.setMap(null);
+       markerCluster.clearMarkers()
+    }
     while (markerArray.length > 0) {
         markerArray.pop().setMap(null);
     }
-    markerArray.length = 0;
 }
-    
 
 
-function watchSubmit() {
-  $('.js-search-form').submit(event => {
-    event.preventDefault();
-    const queryTarget = $(event.currentTarget).find('.js-query');
-    const query = queryTarget.val();
-    getDataFromApi(query, displayCensusSearchData);
-  });
-}
-$(watchSubmit);
 
+//this return data from US census api
 
-let globalI = 0
-
-
-function displayCensusSearchData(data) {
-    console.log(data)
+$('.js-query').autocomplete({
+  source: Object.keys(myLookupObjects),
+  minLength: 2,
+  classes: {
+  "ui-autocomplete": "highlight",
+  }
   
- //const searchResults = data.items.map((item, index) => showResult(item));
- $('.js-search-results').html(data);
-
- 
-
- //call geocoder to convert cityStateString to latlong
- //data[i][0] is === cityStateString
-
-  
-   globalI = 0
-    
-    geoCode()
-    
-    function geoCode() {
-        console.log(globalI)
-        if (globalI === data.length) {
-            return
-
-        }        
-        let i;
-        let limit = 50
-        if (data.length - globalI < limit) {
-            limit = data.length - globalI
-        }
-        for (i = 0; i < limit; i++) {
-            let cityData = {
-            stats: (data[globalI + i][1]),
-            cityname: (data[globalI + i][0]) 
- 
-            }
-            geocodeAddress(cityData.cityname, geocodeCallback(cityData, data.length - 2));
-        }
-        globalI = globalI + i
-        
-        setTimeout(geoCode, 500)
-    }
-}
-
-
-    function geocodeAddress(cityStateString, callback) {
-        let urlString = `https://google-maps-geocoding-api-pfpkeizllh.now.sh`
-        const param = {
-     
-         data: {
-             address: cityStateString,
-             key: 'AIzaSyAsuYMNTF8_0AiUIbgZLhT_AJkZZJxP7dc',
-             },
-            url: urlString,
-            dataType: 'json',
-            type: 'GET',
-            success: callback,
-        };
-        $.ajax(param);
-
-    }
-}
+});

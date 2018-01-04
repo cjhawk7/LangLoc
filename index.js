@@ -390,8 +390,6 @@ const myLookupObjects = {
 };
 
 let globalI = 0
-let completedGeocode = 0
-let markerArray = []
 let markerCluster;
 let uluru = {lat: 34.0489, lng: -111.0937};
 let map;
@@ -403,6 +401,9 @@ initMap = function() {
         center: uluru
     });
     
+    markerCluster = new MarkerClusterer(map, [],
+                {imagePath: './m'});
+
     const queryTarget = $('.js-query');
     queryTarget.val()
     $(watchSubmit);
@@ -415,7 +416,6 @@ function watchSubmit() {
     event.preventDefault();
     RemoveAllMarkers();
     globalI = 0
-    completedGeocode = 0
     const queryTarget = $(event.currentTarget).find('.js-query');
     const query = queryTarget.val();
     getDataFromApi(query, geoCode);
@@ -436,8 +436,11 @@ function getDataFromApi(searchTerm, callback) {
 
 // called only on success from census bureau API
 
-function geoCode(censusData) {
+function geoCode(censusData = []) {
     console.log(globalI, censusData)
+    if (censusData.length === 0) {
+        alert('Please choose another language!')
+    }
 
     if (globalI === censusData.length) {
         return
@@ -462,7 +465,7 @@ function geoCode(censusData) {
 }
 
 function geocodeAddress(cityStateString, callback) {
-    let urlString = `https://google-maps-geocoding-api-pfpkeizllh.now.sh`
+    let urlString = `https://google-maps-geocoding-api-tpvjoimshu.now.sh`
     const param = {
  
     data: {
@@ -481,36 +484,37 @@ function geocodeAddress(cityStateString, callback) {
 function geocodeCallback(cityData, arrayLength) {
 
    return function markerLoc(results, status) {
-        console.log("here")
-        console.log(results.json.results[0].geometry.location)
+    
         //console.log(`${cityData.stats}: ${results.json.results[0].geometry.location}`)
-        completedGeocode++
+        
         if (status === 'success') {
             var marker = new google.maps.Marker({
             map: map,
             position: results.json.results[0].geometry.location,
-            label: cityData.stats,
+            //label: cityData.stats,
             title: 'Click to zoom'
             });
-            markerArray.push(marker)
-          
-            if (completedGeocode === arrayLength) {   
-                markerCluster = new MarkerClusterer(map, markerArray,
-                {imagePath: './m'});
-            }
+
+            markerCluster.addMarker(marker);
+            
+
+            let contentString = `<h2>${cityData.stats}, ${cityData.cityname}</h2>`
+
+
+            let infowindow = new google.maps.InfoWindow({
+                content: contentString
+            });
+
+            marker.addListener('click', function() {
+                infowindow.open(map, marker);
+            });
+
 
         }
 
-        var contentString = `<h2>${cityData.stats}</h2>`
+    
 
-
-        var infowindow = new google.maps.InfoWindow({
-          content: contentString
-        });
-
-        marker.addListener('click', function() {
-          infowindow.open(map, marker);
-        });
+       
 
     } 
 
@@ -524,9 +528,7 @@ function RemoveAllMarkers() {
        //markerCluster.setMap(null);
        markerCluster.clearMarkers()
     }
-    while (markerArray.length > 0) {
-        markerArray.pop().setMap(null);
-    }
+
 }
 
 

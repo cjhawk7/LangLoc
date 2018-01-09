@@ -14,30 +14,28 @@
              integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
               crossorigin="anonymous"></script>
   </head>
-  <body>
-    <header>
-      <h1 class = title-header>Language Locator</h1>
-    </header>
-    <div id="map"></div>
-      <div class="row">
+    <body>
+    <div class= "main-page">
+      <header>
+       <h1 class = "title-header">Language Locator</h1>
+      </header>
+      <div class = content>
+      <p>Input a language in the search form</p>  
+      <div id="map"></div>
         <label>
-        <form action="#" class="js-search-form">
-         <input type="text" class="js-query" placeholder="search a language..." onfocus="this.placeholder = '' ">
-        <button type="submit" class="button">GO</button>   
-        </form>
+          <form action="#" class="js-search-form" id="myForm">
+            <input type="text" class="js-query" id= "lname" onblur="validate() placeholder="search here..."></input> <span id="errorMessage" style="display:none;">No data for selected langauge, please choose another.</span>
+            <button type="submit">Search</button>
+          </form>
         </label>
-        <main role="main" class="js-search-results" hidden>
-        </main>
-        </div>
-
-      <script src="index.js"></script>
-      <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>  
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 
     <script src="markerclusterer.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAsuYMNTF8_0AiUIbgZLhT_AJkZZJxP7dc&callback=initMap"
               type="text/javascript"></script>
-     
-
   </body>
 </html>
 

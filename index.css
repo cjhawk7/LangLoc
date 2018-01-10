@@ -7,6 +7,12 @@
         border: 3px black;
 }
 
+.marker-container {
+  height: 500px;
+  width: 500px;
+  background-color: green;
+}
+
 .content {
   border: 2px black;
   width: 100%;

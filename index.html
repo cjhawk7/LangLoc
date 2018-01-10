@@ -23,10 +23,17 @@
       <p>Input a language in the search form</p>  
       <div id="map"></div>
         <label>
+        
           <form action="#" class="js-search-form" id="myForm">
-            <input type="text" class="js-query" id= "lname" onblur="validate() placeholder="search here..."></input> <span id="errorMessage" style="display:none;">No data for selected langauge, please choose another.</span>
+          <div class = "search">
+            <input type="text" class="js-query" id= "lname" onblur="validate() placeholder="search here..."></input>
             <button type="submit">Search</button>
+            </div>
+            
+             <span id="errorMessage"></span>
+           
           </form>
+         
         </label>
       </div>
     </div>

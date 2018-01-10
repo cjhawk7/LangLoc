@@ -421,9 +421,12 @@ function watchSubmit() {
     event.preventDefault();
     RemoveAllMarkers();
     globalI = 0
-    document.getElementById("errorMessage").style.display = "none";
+    $('#errorMessage').text('');
     const queryTarget = $(event.currentTarget).find('.js-query');
     const query = queryTarget.val();
+    if  (! Object.keys(myLookupObjects).includes(query)) {
+       $('#errorMessage').text('Your input is invalid, please select an option from the dropdown.')
+    }
     getDataFromApi(query, geoCode);
   });
 }   
@@ -445,8 +448,7 @@ function getDataFromApi(searchTerm, callback) {
 function geoCode(censusData = []) {
     console.log(globalI, censusData)
     if (censusData.length === 0) {
-    document.getElementById("lname").value = "";
-    document.getElementById("errorMessage").style.display = "block";
+    $('#errorMessage').text('There is no data for the selected langauge, please choose another.')
     }
 
     if (globalI === censusData.length) {

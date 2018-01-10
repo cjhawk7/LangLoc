@@ -393,7 +393,13 @@ let globalI = 0
 let markerCluster;
 let uluru = {lat: 34.0489, lng: -111.0937};
 let map;
+let popupWindow = null;
 
+
+$('.js-start-btn').on('click', function(){
+$('.intro').addClass('no-display');
+$('.main-page').removeClass('hidden');
+});
 
 initMap = function() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -410,12 +416,12 @@ initMap = function() {
 }
 
 
-
 function watchSubmit() {
   $('.js-search-form').submit(event => {
     event.preventDefault();
     RemoveAllMarkers();
     globalI = 0
+    document.getElementById("errorMessage").style.display = "none";
     const queryTarget = $(event.currentTarget).find('.js-query');
     const query = queryTarget.val();
     getDataFromApi(query, geoCode);
@@ -439,7 +445,8 @@ function getDataFromApi(searchTerm, callback) {
 function geoCode(censusData = []) {
     console.log(globalI, censusData)
     if (censusData.length === 0) {
-        alert('Please choose another language!')
+    document.getElementById("lname").value = "";
+    document.getElementById("errorMessage").style.display = "block";
     }
 
     if (globalI === censusData.length) {
@@ -483,7 +490,7 @@ function geocodeAddress(cityStateString, callback) {
 
 function geocodeCallback(cityData, arrayLength) {
 
-   return function markerLoc(results, status) {
+    return function markerLoc(results, status) {
     
         //console.log(`${cityData.stats}: ${results.json.results[0].geometry.location}`)
         
@@ -502,44 +509,38 @@ function geocodeCallback(cityData, arrayLength) {
 
 
             let infowindow = new google.maps.InfoWindow({
-                content: contentString
+                content: contentString,
+                maxWidth: 200
             });
 
             marker.addListener('click', function() {
+                marker.infowindow = infowindow
+                let markersArray = markerCluster.getMarkers()
+                for (let i = 0; i < markersArray.length; i++) {
+                    if (markersArray[i].infowindow !== undefined) {
+                        markersArray[i].infowindow.close()
+                    }
+                }
                 infowindow.open(map, marker);
             });
-
-
         }
-
-    
-
-       
-
     } 
-
 }
-
-
-      
 
 function RemoveAllMarkers() {
     if (markerCluster !== undefined) {
        //markerCluster.setMap(null);
        markerCluster.clearMarkers()
     }
-
 }
-
-
 
 //this return data from US census api
 
 $('.js-query').autocomplete({
-  source: Object.keys(myLookupObjects),
-  minLength: 2,
-  classes: {
-  "ui-autocomplete": "highlight",
-  }
-  
+    source: Object.keys(myLookupObjects),
+    minLength: 2,
+    classes: {
+    "ui-autocomplete": "highlight",
+    }
 });
+

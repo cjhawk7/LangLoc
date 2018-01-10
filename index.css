@@ -1,9 +1,10 @@
 #map {
         height: 500px;
-        width: 60%;
+        width: 80%;
         border-radius: 5px;
         margin: 0 auto;
         margin-bottom: 15px;
+        border: 3px black;
 }
 
 .content {
@@ -81,9 +82,11 @@ color: white;
 
 p {
   color: black;
-  font-size: 30px;
+  font-size: 25px;
   font-family: Open-sans;
-  display: inline-block;  
+  text-align: center;
+  padding-top: 10px;
+  letter-spacing: 3px;  
 }
 
 .hidden {

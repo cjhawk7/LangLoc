@@ -1,10 +1,15 @@
 #map {
-        height: 500px;
-        width: 80%;
-        border-radius: 5px;
-        margin: 0 auto;
-        margin-bottom: 15px;
-        border: 3px black;
+  height: 500px;
+  width: 80%;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  border: 3px black;
+}
+
+.progress {
+  margin-top: 20px;
+  margin-right: 90px;
 }
 
 .content {
@@ -13,6 +18,32 @@
   height: 700px;
   background: white;
   margin-top: 100px;
+}
+.info-link {
+  color: white;
+  font-family: Open-sans;
+  font-size: 20px;
+  text-decoration: none;
+  margin-top: 30px;
+}
+
+a:hover {
+  background-color: black;
+}
+
+a {
+  transition: background-color 1s;
+}
+
+.link-position {
+  margin-top: 20px;
+}
+
+.info-content {
+  font-size: 10;
+  font-family: Open-sans;
+  background: white;
+  color: black;
 }
 
 html, body {
@@ -48,6 +79,7 @@ html, body {
  color: white;
  font-family: Open-sans;
  font-size: 50px; 
+ letter-spacing: 3px;
  }
  
  button {
@@ -59,6 +91,10 @@ html, body {
  background-color: white;
  color: black;
  }
+
+ button:hover {
+    background-color: #4CAF50;
+}
  
  
 input:focus::-webkit-input-placeholder { 
@@ -101,3 +137,4 @@ p {
 color: black;
 font-family: Open-sans;
 }
+

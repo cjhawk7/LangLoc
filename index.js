@@ -396,6 +396,7 @@ let map;
 let popupWindow = null;
 
 
+
 $('.js-start-btn').on('click', function(){
 $('.intro').addClass('no-display');
 $('.main-page').removeClass('hidden');
@@ -421,7 +422,9 @@ function watchSubmit() {
     event.preventDefault();
     RemoveAllMarkers();
     globalI = 0
+   $('.progress').progressbar({value: 0});
     $('#errorMessage').text('');
+    //$('progress').removeClass('hidden');
     const queryTarget = $(event.currentTarget).find('.js-query');
     const query = queryTarget.val();
     if  (! Object.keys(myLookupObjects).includes(query)) {
@@ -471,6 +474,7 @@ function geoCode(censusData = []) {
     globalI = globalI + i
     
     setTimeout(geoCode.bind(this, censusData), 500)
+
 }
 
 function geocodeAddress(cityStateString, callback) {
@@ -495,6 +499,12 @@ function geocodeCallback(cityData, arrayLength) {
     return function markerLoc(results, status) {
     
         //console.log(`${cityData.stats}: ${results.json.results[0].geometry.location}`)
+
+    const progressElement = $('.progress');
+    const progressValue = progressElement.val();
+    progressElement.val(progressValue + (100 / arrayLength));
+
+ 
         
         if (status === 'success') {
             var marker = new google.maps.Marker({
@@ -505,14 +515,18 @@ function geocodeCallback(cityData, arrayLength) {
             });
 
             markerCluster.addMarker(marker);
+
+           // $('progress').addClass('hidden');
             
 
-            let contentString = `<h2>${cityData.stats}, ${cityData.cityname}</h2>`
+            let contentString = `<div class="info-content">
+            <h2>${cityData.stats} native speakers in ${cityData.cityname}</h2>
+            </div>`
 
 
             let infowindow = new google.maps.InfoWindow({
                 content: contentString,
-                maxWidth: 200
+                maxWidth: 200,
             });
 
             marker.addListener('click', function() {
@@ -528,6 +542,7 @@ function geocodeCallback(cityData, arrayLength) {
         }
     } 
 }
+
 
 function RemoveAllMarkers() {
     if (markerCluster !== undefined) {

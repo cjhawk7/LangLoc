@@ -396,10 +396,10 @@ let map;
 let popupWindow = null;
 
 
-$('.js-start-btn').on('click', function(){
-$('.intro').addClass('no-display');
-$('.main-page').removeClass('hidden');
-});
+// $('.js-start-btn').on('click', function(){
+// $('.intro').addClass('no-display');
+// $('.main-page').removeClass('hidden');
+// });
 
 initMap = function() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -421,6 +421,8 @@ function watchSubmit() {
     event.preventDefault();
     RemoveAllMarkers();
     globalI = 0
+    // $('progress').progressbar({value:0});
+    // $('progress').removeClass('hidden');
     $('#errorMessage').text('');
     const queryTarget = $(event.currentTarget).find('.js-query');
     const query = queryTarget.val();
@@ -494,7 +496,9 @@ function geocodeCallback(cityData, arrayLength) {
 
     return function markerLoc(results, status) {
     
-        //console.log(`${cityData.stats}: ${results.json.results[0].geometry.location}`)
+        const progressElement = $('progress');
+        const progressValue = progressElement.val();
+        progressElement.val(progressValue + (100 / arrayLength));
         
         if (status === 'success') {
             var marker = new google.maps.Marker({
@@ -506,8 +510,12 @@ function geocodeCallback(cityData, arrayLength) {
 
             markerCluster.addMarker(marker);
             
+            // $('progress').addClass('hidden');
 
-            let contentString = `<h2>${cityData.stats}, ${cityData.cityname}</h2>`
+
+            let contentString = `<div class = "info-content">
+            <h2>${cityData.stats} native speakers in ${cityData.cityname}</h2>
+            </div>`
 
 
             let infowindow = new google.maps.InfoWindow({

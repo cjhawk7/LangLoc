@@ -423,35 +423,24 @@ initMap = function () {
 
 
 function watchSubmit() {
-  $('.js-search-form').submit(event => {
-    event.preventDefault();
-    RemoveAllMarkers();
-    globalI = 0
-    // $('progress').progressbar({value:0});
-    // $('progress').removeClass('hidden');
+    $('.js-search-form').submit(event => {
+        event.preventDefault();
+        RemoveAllMarkers();
+        globalI = 0
+    $('progress').val(0);
+    $('progress').removeClass('hidden');
     $('#errorMessage').text('');
-    //$('progress').removeClass('hidden');
     const queryTarget = $(event.currentTarget).find('.js-query');
     const query = queryTarget.val();
     if  (! Object.keys(myLookupObjects).includes(query)) {
        $('#errorMessage').text('Your input is invalid, please select an option from the dropdown.')
     }
     getDataFromApi(query, geoCode);
-  });
-}   
-    $('.js-search-form').submit(event => {
-        event.preventDefault();
-        RemoveAllMarkers();
-        globalI = 0
-        $('#errorMessage').text('');
-        const queryTarget = $(event.currentTarget).find('.js-query');
-        const query = queryTarget.val();
-        if (!Object.keys(myLookupObjects).includes(query)) {
-            $('#errorMessage').text('Your input is invalid, please select an option from the dropdown.')
-        }
-        getDataFromApi(query, geoCode);
     });
-}
+
+}   
+
+
 
 function getDataFromApi(searchTerm, callback) {
     let langCode = myLookupObjects[searchTerm]
@@ -522,6 +511,11 @@ function geocodeCallback(cityData, arrayLength) {
         const progressValue = progressElement.val();
         progressElement.val(progressValue + (100 / arrayLength));
         
+        if (ath.floor(progressValue + (100 / arrayLength)) === 97) {
+
+            $('progress').addClass('hidden')
+        }
+        
         if (status === 'success') {
             var marker = new google.maps.Marker({
                 map: map,
@@ -531,13 +525,7 @@ function geocodeCallback(cityData, arrayLength) {
             });
 
             markerCluster.addMarker(marker);
-
-           // $('progress').addClass('hidden');
-            
-            // $('progress').addClass('hidden');
-
-
-
+        
             let contentString = `<div class = "info-content">
             <h2>${cityData.stats} native speakers in ${cityData.cityname}</h2>
             </div>`;

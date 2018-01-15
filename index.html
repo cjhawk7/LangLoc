@@ -5,36 +5,32 @@
     <meta name="viewport" content="width=device-width">
     <title>Language Map</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
-    <script
-          src="https://code.jquery.com/jquery-3.2.1.min.js"
-          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-          crossorigin="anonymous"></script>
-          <script
-            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-             integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-              crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+    crossorigin="anonymous"></script>
   </head>
-    <body>
-    <div class= "main-page">
-      <header>
-       <h1 class = "title-header">LangLoc</h1>
-      </header>
-      <div class = content>
+  <body>
+    <header>
+      <h1 class = "title-header">LangLoc</h1>
+    </header>
+    <div class = content>
       <p>Demographic mapping of native language speakers.</p>
       <div id="map"></div>
-        <label>
-          <form action="#" class="js-search-form" id="myForm">
+      <label>
+        <form action="#" class="js-search-form" id="myForm">
           <div class = "search">
             <input type="text" class="js-query" id= "lname" placeholder = "search away..."></input>
-            <button type="submit">Search</button>
-            </div>
-             <span id="errorMessage"></span>
-             <progress max="97" value='0' class="hidden">
-          </form>
-        </label>
-      </div>
+              <button type="submit">Search</button>
+          </div>
+          <span id="errorMessage"></span>
+            <progress max="97" value='0' class="hidden">
+        </form>
+      </label>
     </div>
-     <div class="link-position">
+    <div class="link-position">
       <a href="https://api.census.gov/data/2013/language.html" class ="info-link">Click to learn more...</a>
     </div>
     <script src="index.js"></script>

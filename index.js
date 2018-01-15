@@ -389,7 +389,7 @@ const myLookupObjects = {
     "Not Specified": 999,
 };
 
-let globalI = 0
+let globalI = 0;
 let markerCluster;
 let uluru = {
     lat: 34.0489,
@@ -397,14 +397,6 @@ let uluru = {
 };
 let map;
 let popupWindow = null;
-
-
-
-// $('.js-start-btn').on('click', function(){
-// $('.intro').addClass('no-display');
-// $('.main-page').removeClass('hidden');
-// });
-
 
 initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -421,26 +413,23 @@ initMap = function () {
     $(watchSubmit);
 }
 
-
 function watchSubmit() {
     $('.js-search-form').submit(event => {
         event.preventDefault();
         RemoveAllMarkers();
-        globalI = 0
-    $('progress').val(0);
-    $('progress').removeClass('hidden');
-    $('#errorMessage').text('');
-    const queryTarget = $(event.currentTarget).find('.js-query');
-    const query = queryTarget.val();
-    if  (! Object.keys(myLookupObjects).includes(query)) {
-       $('#errorMessage').text('Your input is invalid, please select an option from the dropdown.')
-    }
-    getDataFromApi(query, geoCode);
+        globalI = 0;
+        $('progress').val(0);
+        $('progress').removeClass('hidden');
+        $('#errorMessage').text('');
+        const queryTarget = $(event.currentTarget).find('.js-query');
+        const query = queryTarget.val();
+        if  (! Object.keys(myLookupObjects).includes(query)) {
+            $('#errorMessage').text('Your input is invalid, please select an option from the dropdown.')
+        }
+        getDataFromApi(query, geoCode);
     });
 
 }   
-
-
 
 function getDataFromApi(searchTerm, callback) {
     let langCode = myLookupObjects[searchTerm]
@@ -449,12 +438,10 @@ function getDataFromApi(searchTerm, callback) {
         url: urlString,
         dataType: 'json',
         type: 'GET',
-        success: callback,
+        success: callback
     };
     $.ajax(settings);
 }
-
-// called only on success from census bureau API
 
 function geoCode(censusData = []) {
     console.log(globalI, censusData)
@@ -475,20 +462,17 @@ function geoCode(censusData = []) {
         let cityData = {
             stats: (censusData[globalI + i][1]),
             cityname: (censusData[globalI + i][0])
-
         }
         geocodeAddress(cityData.cityname, geocodeCallback(cityData, censusData.length));
     }
-    globalI = globalI + i
+    globalI = globalI + i;
 
-    setTimeout(geoCode.bind(this, censusData), 500)
-
+    setTimeout(geoCode.bind(this, censusData), 500);
 }
 
 function geocodeAddress(cityStateString, callback) {
-    let urlString = `https://google-maps-geocoding-api-tpvjoimshu.now.sh`
+    let urlString = `https://google-maps-geocoding-api-tpvjoimshu.now.sh`;
     const param = {
-
         data: {
             address: cityStateString,
             key: 'AIzaSyAsuYMNTF8_0AiUIbgZLhT_AJkZZJxP7dc',
@@ -505,22 +489,18 @@ function geocodeAddress(cityStateString, callback) {
 function geocodeCallback(cityData, arrayLength) {
 
     return function markerLoc(results, status) {
-
-    
         const progressElement = $('progress');
         const progressValue = progressElement.val();
         progressElement.val(progressValue + (100 / arrayLength));
         
-        if (ath.floor(progressValue + (100 / arrayLength)) === 97) {
-
-            $('progress').addClass('hidden')
+        if (Math.floor(progressValue + (100 / arrayLength)) === 97) {
+            $('progress').addClass('hidden');
         }
         
         if (status === 'success') {
             var marker = new google.maps.Marker({
                 map: map,
                 position: results.json.results[0].geometry.location,
-                //label: cityData.stats,
                 title: 'Click to zoom'
             });
 
@@ -536,11 +516,11 @@ function geocodeCallback(cityData, arrayLength) {
             });
 
             marker.addListener('click', function () {
-                marker.infowindow = infowindow
-                let markersArray = markerCluster.getMarkers()
+                marker.infowindow = infowindow;
+                let markersArray = markerCluster.getMarkers();
                 for (let i = 0; i < markersArray.length; i++) {
                     if (markersArray[i].infowindow !== undefined) {
-                        markersArray[i].infowindow.close()
+                        markersArray[i].infowindow.close();
                     }
                 }
                 infowindow.open(map, marker);
@@ -551,17 +531,14 @@ function geocodeCallback(cityData, arrayLength) {
 
 function RemoveAllMarkers() {
     if (markerCluster !== undefined) {
-        //markerCluster.setMap(null);
-        markerCluster.clearMarkers()
+        markerCluster.clearMarkers();
     }
 }
-
-//this return data from US census api
 
 $('.js-query').autocomplete({
     source: Object.keys(myLookupObjects),
     minLength: 2,
     classes: {
-        "ui-autocomplete": "highlight",
+        "ui-autocomplete": "highlight"
     }
 });

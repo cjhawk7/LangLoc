@@ -446,7 +446,7 @@ function getDataFromApi(searchTerm, callback) {
 function geoCode(censusData = []) {
     console.log(globalI, censusData)
     if (censusData.length === 0) {
-        $('#errorMessage').text('There is no data for the selected langauge, please choose another.')
+        $('#errorMessage').text('There is no data for the selected language, please choose another.')
     }
 
     if (globalI === censusData.length) {
@@ -473,7 +473,6 @@ function geoCode(censusData = []) {
 function geocodeAddress(cityStateString, callback) {
     let urlString = `https://google-maps-geocoding-api-tpvjoimshu.now.sh`;
     const param = {
-        data: {
             address: cityStateString,
             key: 'AIzaSyAsuYMNTF8_0AiUIbgZLhT_AJkZZJxP7dc',
         },

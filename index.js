@@ -418,7 +418,7 @@ function watchSubmit() {
         event.preventDefault();
         RemoveAllMarkers();
         globalI = 0;
-        $('progress').val(0);
+        $('progress').removeAttr('value');
         $('progress').removeClass('hidden');
         $('#errorMessage').text('');
         const queryTarget = $(event.currentTarget).find('.js-query');
@@ -473,6 +473,7 @@ function geoCode(censusData = []) {
 function geocodeAddress(cityStateString, callback) {
     let urlString = `https://google-maps-geocoding-api-tpvjoimshu.now.sh`;
     const param = {
+        data: {
             address: cityStateString,
             key: 'AIzaSyAsuYMNTF8_0AiUIbgZLhT_AJkZZJxP7dc',
         },
@@ -506,7 +507,7 @@ function geocodeCallback(cityData, arrayLength) {
             markerCluster.addMarker(marker);
         
             let contentString = `<div class = "info-content">
-            <h2>${cityData.stats} native speakers in ${cityData.cityname}</h2>
+            <h3>${cityData.stats} native speakers in ${cityData.cityname}</h3>
             </div>`;
 
             let infowindow = new google.maps.InfoWindow({

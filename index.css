@@ -1,10 +1,12 @@
 #map {
   height: 500px;
-  width: 80%;
+  width: 60%;
   border-radius: 5px;
   margin: 0 auto;
   margin-bottom: 15px;
   border: 3px black;
+  float: right;
+  margin-right: 370px;
 }
 
 
@@ -26,6 +28,7 @@ progress {
   background: white;
   margin-top: 100px;
   background-image: url("http://globalmedicalco.com/photos/globalmedicalco/2/8627.jpg");
+  background-size: cover; 
 }
 
 .info-link {
@@ -71,7 +74,9 @@ html, body {
   margin: 0 auto;
   top: 50px;
   border-radius: 2px;
-  padding-bottom: 300px;
+  padding-bottom: 280px;
+  margin-top: 135px;
+  margin-left: 50px;
 }    
  
 .js-query {
@@ -89,6 +94,7 @@ html, body {
   font-family: Open-sans;
   font-size: 50px; 
   letter-spacing: 3px;
+  padding-bottom: 40px;
 }
  
 button {
@@ -124,13 +130,20 @@ input:focus::-webkit-input-placeholder {
   color: white;
 }
 
-p {
+h2 {
   color: black;
-  font-size: 25px;
+  font-size:30px;
   font-family: Open-sans;
   text-align: center;
   padding-top: 10px;
   letter-spacing: 3px;  
+}
+
+h3 {
+  font-size: 15px;
+  font-family: Open-sans;
+  text-align: center;
+  text-align: left;
 }
 
 .hidden {
@@ -144,5 +157,13 @@ p {
 #errorMessage {
   color: black;
   font-family: Open-sans;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+p {
+padding-top: 40px;
+margin-top: 35px;
+font-size: 20px;
 }
 

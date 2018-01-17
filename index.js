@@ -497,6 +497,14 @@ function geocodeCallback(cityData, arrayLength) {
             $('progress').addClass('hidden');
         }
         
+        // else if (Math.floor(progressValue + (100 / arrayLength)) !== 97 && Math.floor(progressValue + (100 / arrayLength)) > 50) {
+        //     $('progress').addClass('hidden');
+        // }
+
+        if (cityData.stats === null || cityData.stats === 'EST') {
+            return
+        }
+
         if (status === 'success') {
             var marker = new google.maps.Marker({
                 map: map,

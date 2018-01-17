@@ -159,6 +159,8 @@ h3 {
   font-family: Open-sans;
   font-size: 15px;
   letter-spacing: 1px;
+  text-align: center;
+  position: relative;
 }
 
 p {

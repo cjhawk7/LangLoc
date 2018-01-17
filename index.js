@@ -493,13 +493,9 @@ function geocodeCallback(cityData, arrayLength) {
         const progressValue = progressElement.val();
         progressElement.val(progressValue + (100 / arrayLength));
         
-        if (Math.floor(progressValue + (100 / arrayLength)) === 97) {
+        if (Math.floor(progressValue + (100 / arrayLength)) > 50) {
             $('progress').addClass('hidden');
         }
-        
-        // else if (Math.floor(progressValue + (100 / arrayLength)) !== 97 && Math.floor(progressValue + (100 / arrayLength)) > 50) {
-        //     $('progress').addClass('hidden');
-        // }
 
         if (cityData.stats === null || cityData.stats === 'EST') {
             return

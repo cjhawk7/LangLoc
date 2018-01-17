@@ -3,7 +3,7 @@ A demographic mapping tool to find the population of native speakers across the 
 ## Motivation
 I wanted to make an app that would allow users to find the population density of speakers of whatever language across the country, and view it on a map. 
 ## Screenshots
-![main](https://user-images.githubusercontent.com/32127270/34923871-d9fe1a1e-f95c-11e7-9420-8c0e12a3056d.png)
+![screenshot](https://user-images.githubusercontent.com/32127270/35027083-cb47f14c-fb0b-11e7-8731-82dfa6e272b3.png)
 ## Summary
 1. Run a search in the search box for any language
 2. Wait for map to populate with markers 

@@ -186,29 +186,3 @@ p {
   float: right;
   font-size: 12px;
 }
-
-.parent {
-  display: flex;
-  flex-direction: column;
-  padding-right: 150px;
-}
-
-@media screen and (min-width: 800px) {
-  .parent {
-    flex-direction: row;
-  }
-  .body-text {
-    order: 1;
-    flex: 1 1;
-
-  }
-  #map {
-    order: 2;
-    flex: 4 1;
-  }
-}
-
-.js-search-form p {
-  font-size: 12px;
-  padding-top: 22px;
-}

@@ -5,12 +5,8 @@
     <meta name="viewport" content="width=device-width">
     <title>Language Map</title>
     <link href="index.css" rel="stylesheet" type="text/css" />
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-    crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-    integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-    crossorigin="anonymous"></script>
+    <script src="jquery3.2.1"></script>
+    <script src="jqueryui1.12.1"></script>
   </head>
   <body>
     <header>
@@ -18,24 +14,27 @@
     </header>
     <div class = "content">
       <h2>Demographic mapping of native language speakers.<h2>
-      <div id="map" align ="right"></div>
-      <p>Search any language.</p>
-      <p>Click on a marker to learn how many native speakers are in your favorite cities.</p>
-      <p>The higher the number, the greater the density of markers in that area.</p>
+      <div class="parent">  
+      <div class="body-text">
+        <p>Search any language.</p>
+        <p>Click on a marker to learn how many native speakers are in your favorite cities.</p>
+        <p>   </p>
+      </div>
+        <div id="map" align ="right"></div>
+      </div>
       <label>
         <form action="#" class="js-search-form" id="myForm">
+          <p><span style="color:blue">Blue</span> clusters = 2 or more markers in the area. <span style="color:yellow">Yellow</span> clusters = 10 or more markers in the area.</p>
           <div class = "search">
             <input type="text" class="js-query" id= "lname" placeholder = "search away...">
               <button type="submit">Search</button>
           </div>
           <span id="errorMessage"></span>
-            <progress max="97" class="hidden">
+          <progress max="97" class="hidden">
         </form>
-      </label>
+      </label>  
     </div>
-    <div class="link-position">
-      <a href="https://api.census.gov/data/2013/language.html" class ="info-link">Click to learn about data used...</a>
-    </div>
+    
     <script src="index.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script> 

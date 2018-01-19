@@ -3,7 +3,7 @@ A demographic mapping tool to find the population of native speakers across the 
 ## Motivation
 I wanted to make an app that would allow users to find the population density of speakers of whatever language across the country, and view it on a map. 
 ## Screenshots
-![screenshot](https://user-images.githubusercontent.com/32127270/35027083-cb47f14c-fb0b-11e7-8731-82dfa6e272b3.png)
+![screenshot](https://user-images.githubusercontent.com/32127270/35130816-0debf1ae-fc80-11e7-9a09-d813ccdd82bf.png)
 ## Summary
 1. Run a search in the search box for any language
 2. Wait for map to populate with markers 
@@ -13,3 +13,5 @@ I wanted to make an app that would allow users to find the population density of
 * CSS
 * Javascript
 * jQuery
+##
+https://cjhawk7.github.io/LangLoc/

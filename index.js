@@ -397,6 +397,7 @@ let uluru = {
 };
 let map;
 let popupWindow = null;
+let markerlocCounter = 0;
 
 initMap = function () {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -418,6 +419,7 @@ function watchSubmit() {
         event.preventDefault();
         RemoveAllMarkers();
         globalI = 0;
+        markerlocCounter = 0;
         $('progress').removeAttr('value');
         $('progress').removeClass('hidden');
         $('#errorMessage').text('');
@@ -492,14 +494,19 @@ function geocodeCallback(cityData, arrayLength) {
         const progressElement = $('progress');
         const progressValue = progressElement.val();
         progressElement.val(progressValue + (100 / arrayLength));
+        console.count();
         
-        if (Math.floor(progressValue + (100 / arrayLength)) > 50) {
+        markerlocCounter++;
+
+        if (markerlocCounter === arrayLength) {
             $('progress').addClass('hidden');
         }
 
         if (cityData.stats === null || cityData.stats === 'EST') {
             return
         }
+
+
 
         if (status === 'success') {
             var marker = new google.maps.Marker({

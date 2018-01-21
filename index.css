@@ -3,11 +3,8 @@
   width: 80%;
   border-radius: 5px;
   margin-bottom: 15px;
-  display: inline-block;
-  order: 1;
-  margin-right: 200px;
-  margin-left: 30px;
-/*  align-self: center;*/
+  display: block;
+  margin: auto;
 }
 
 
@@ -26,7 +23,7 @@ progress {
 .content {
   border: 2px black;
   width: 100%;
-  height: 700px;
+  height: 800px;
   background: white;
   margin-top: 100px;
   background-image: url("http://globalmedicalco.com/photos/globalmedicalco/2/8627.jpg");
@@ -74,13 +71,12 @@ html, body {
       
 .js-search-form {
   text-align: center;
-  margin: 0 auto;
+  margin: auto;
   top: 50px;
   border-radius: 2px;
   padding-bottom: 200px;
   padding-top: 2px;
   margin-left: 50px;
-  margin-top: -75px;
 }    
  
 .js-query {
@@ -167,48 +163,14 @@ h3 {
   margin-right: 50px;
 }
 
-p {
-  padding-top: 40px;
-  margin-top: 35px;
+.body-text p {
+  font-family: Open-sans;
   font-size: 20px;
-}
-
-.body-text {
-  display: inline-block;
-  vertical-align: top;
-  order: 2;
-  flex-shrink: 2;
-}
-
-.label-text p {
-  margin-left: 50px;
-  padding: .5px;
-  float: right;
-  font-size: 12px;
-}
-
-.parent {
-  display: flex;
-  flex-direction: column;
-  padding-right: 150px;
-}
-
-@media screen and (min-width: 800px) {
-  .parent {
-    flex-direction: row;
-  }
-  .body-text {
-    order: 1;
-    flex: 1 1;
-
-  }
-  #map {
-    order: 2;
-    flex: 4 1;
-  }
+  text-align: center;
+  letter-spacing: 2px;
 }
 
 .js-search-form p {
-  font-size: 12px;
-  padding-top: 22px;
+  font-size: 15px;
+  padding-top: 20px;
 }

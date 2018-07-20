@@ -1,3 +1,92 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
 #map {
   height: 500px;
   width: 80%;
@@ -6,7 +95,6 @@
   display: block;
   margin: auto;
 }
-
 
 progress {
   margin-top: 20px;
@@ -21,14 +109,13 @@ progress {
 }
 
 .content {
-  border: 2px black;
   width: 100%;
   height: 800px;
-  background: white;
   margin-top: 100px;
-  background-image: url("http://globalmedicalco.com/photos/globalmedicalco/2/8627.jpg");
-  background-size: cover; 
+  /* background-image: url("http://globalmedicalco.com/photos/globalmedicalco/2/8627.jpg"); */
+  background-size: cover;
   margin-top: 25px;
+  border: 5px solid red;
 }
 
 .info-link {
@@ -58,7 +145,8 @@ a {
   color: black;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -68,7 +156,7 @@ html, body {
   background-size: cover;
   background-attachment: fixed;
 }
-      
+
 .js-search-form {
   text-align: center;
   margin: auto;
@@ -77,8 +165,8 @@ html, body {
   padding-bottom: 200px;
   padding-top: 2px;
   margin-left: 50px;
-}    
- 
+}
+
 .js-query {
   text-align: center;
   height: 35px;
@@ -86,32 +174,32 @@ html, body {
   font-size: 25px;
   font-family: Open-sans;
   color: black;
-} 
- 
+}
+
 .title-header {
   text-align: center;
   color: white;
   font-family: Open-sans;
-  font-size: 50px; 
+  font-size: 50px;
   letter-spacing: 3px;
 }
- 
+
 button {
   width: 100px;
   height: 35px;
   font-family: Open-sans;
-  font-size:20px;
+  font-size: 20px;
   border-radius: 6px;
   background-color: white;
   color: black;
 }
 
- button:hover {
-  background-color: #4CAF50;
+button:hover {
+  background-color: #4caf50;
 }
- 
-input:focus::-webkit-input-placeholder { 
-  color:transparent; 
+
+input:focus::-webkit-input-placeholder {
+  color: transparent;
 }
 
 .ui-autocomplete {
@@ -131,11 +219,11 @@ input:focus::-webkit-input-placeholder {
 
 h2 {
   color: black;
-  font-size:30px;
+  font-size: 30px;
   font-family: Open-sans;
   text-align: center;
   padding-top: 10px;
-  letter-spacing: 3px;  
+  letter-spacing: 3px;
 }
 
 h3 {
@@ -173,4 +261,17 @@ h3 {
 .js-search-form p {
   font-size: 15px;
   padding-top: 20px;
+}
+
+@media (max-width: 500px) {
+  .content {
+    width: 100%;
+    height: 800px;
+    margin-top: 100px;
+    /* background-image: url("http://globalmedicalco.com/photos/globalmedicalco/2/8627.jpg"); */
+    background-size: cover;
+    margin-top: 25px;
+    margin: 0;
+    border: 5px solid purple;
+  }
 }

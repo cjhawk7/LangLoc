@@ -94,6 +94,7 @@ video {
   margin-bottom: 15px;
   display: block;
   margin: auto;
+  margin-top: 75px;
 }
 
 progress {
@@ -115,7 +116,6 @@ progress {
   background-image: url("http://globalmedicalco.com/photos/globalmedicalco/2/8627.jpg");
   background-size: cover;
   margin-top: 25px;
-  border: 5px solid red;
 }
 
 .info-link {
@@ -174,6 +174,7 @@ body {
   font-size: 25px;
   font-family: Open-sans;
   color: black;
+  margin-top: 30px;
 }
 
 .title-header {
@@ -184,18 +185,19 @@ body {
   letter-spacing: 3px;
 }
 
-button {
+.mainbutton {
   width: 100px;
   height: 35px;
   font-family: Open-sans;
   font-size: 20px;
   border-radius: 6px;
   background-color: white;
-  color: black;
 }
 
 button:hover {
-  background-color: #4caf50;
+  cursor: pointer;
+  background-color: #e6e6e6;
+  transition: 0.3s;
 }
 
 input:focus::-webkit-input-placeholder {
@@ -217,6 +219,38 @@ input:focus::-webkit-input-placeholder {
   color: white;
 }
 
+.landing h2 {
+  color: black;
+  font-size: 30px;
+  font-family: Open-sans;
+  text-align: center;
+  padding-top: 10px;
+  letter-spacing: 3px;
+  color: white;
+  margin-top: 150px;
+}
+
+.landing p {
+  font-family: Open-sans;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: white;
+  margin-top: 75px;
+}
+
+.landingbutton {
+  width: 300px;
+  height: 40px;
+  font-family: Open-sans;
+  font-size: 20px;
+  border-radius: 13px;
+  background-color: white;
+  display: block;
+  margin: auto;
+  margin-top: 200px;
+}
+
 h2 {
   color: black;
   font-size: 30px;
@@ -234,7 +268,7 @@ h3 {
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
 .no-display {
@@ -272,6 +306,32 @@ h3 {
     background-size: cover;
     margin-top: 25px;
     margin: 0;
-    border: 5px solid purple;
+  }
+
+  .js-query {
+    text-align: center;
+    height: 35px;
+    border-radius: 7px;
+    font-size: 25px;
+    font-family: Open-sans;
+    color: black;
+    margin-top: 30px;
+    display: block;
+    margin: auto;
+  }
+
+  .js-search-form p {
+    font-size: 15px;
+    padding-top: 20px;
+  }
+
+  .mainbutton {
+    width: 100px;
+    height: 35px;
+    font-family: Open-sans;
+    font-size: 20px;
+    border-radius: 6px;
+    background-color: white;
+    margin-top: 5px;
   }
 }

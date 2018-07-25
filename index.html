@@ -18,27 +18,29 @@
   </header>
   <div class="landing">
     <h2>Demographic mapping of native language speakers.</h2>
-    <p>Search any language. Learn how many native speakers are in your favorite cities.</p>
+    <p>Search any language. Learn how many native speakers are in your favorite cities across the U.S.</p>
     <button type="submit" class="landingbutton">Get started</button>
   </div>
-  <div class="content hidden">
-    <div class="body-text">
-      <p>Search any language. Click on a marker to learn how many native speakers are in your favorite cities.</p>
+  <div class="search hidden">
+    <div class="content">
+      <div class="body-text">
+        <p>Search any language. Click on a marker to learn how many native speakers are in your favorite cities.</p>
+      </div>
+      <div id="map" align="right"></div>
+      <label>
+        <form action="#" class="js-search-form" id="myForm">
+          <p>
+            <span style="color:blue;">Blue</span> clusters = 2 or more markers in the area.
+            <span style="color:yellow; text-shadow:  -1px -1px 0 #000,1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Yellow</span> clusters = 10 or more markers in the area.</p>
+          <div class="search">
+            <input type="text" class="js-query" id="lname" placeholder="search away...">
+            <button type="submit" class="mainbutton">Search</button>
+          </div>
+          <span id="errorMessage"></span>
+          <progress max="97" class="hidden">
+        </form>
+      </label>
     </div>
-    <div id="map" align="right"></div>
-    <label>
-      <form action="#" class="js-search-form" id="myForm">
-        <p>
-          <span style="color:blue;">Blue</span> clusters = 2 or more markers in the area.
-          <span style="color:yellow; text-shadow:  -1px -1px 0 #000,1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;">Yellow</span> clusters = 10 or more markers in the area.</p>
-        <div class="search">
-          <input type="text" class="js-query" id="lname" placeholder="search away...">
-          <button type="submit" class="mainbutton">Search</button>
-        </div>
-        <span id="errorMessage"></span>
-        <progress max="97" class="hidden">
-      </form>
-    </label>
   </div>
   <script src="index.js"></script>
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">

@@ -400,7 +400,7 @@ let popupWindow = null;
 let markerlocCounter = 0;
 
 $(".landingbutton").on("click", function() {
-  $(".content").removeClass("hidden");
+  $(".search").removeClass("hidden");
   $(".landing").addClass("hidden");
 });
 

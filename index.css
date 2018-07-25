@@ -118,6 +118,9 @@ progress {
   margin-top: 25px;
 }
 
+.search {
+}
+
 .info-link {
   color: white;
   font-family: Open-sans;
@@ -151,7 +154,8 @@ body {
   margin: 0;
   padding: 0;
   background-color: white;
-  background-image: url("https://wallpapertag.com/wallpaper/full/5/2/f/350892-top-website-background-1920x1234.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("http://www.tokkoro.com/picsup/2891882-new-york-city-river-usa-night-helicopters-birds-eye-view-city-island-aerial-view___mixed-wallpapers.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -227,7 +231,7 @@ input:focus::-webkit-input-placeholder {
   padding-top: 10px;
   letter-spacing: 3px;
   color: white;
-  margin-top: 150px;
+  margin-top: 300px;
 }
 
 .landing p {
@@ -308,16 +312,8 @@ h3 {
     margin: 0;
   }
 
-  .js-query {
-    text-align: center;
-    height: 35px;
-    border-radius: 7px;
-    font-size: 25px;
-    font-family: Open-sans;
-    color: black;
-    margin-top: 30px;
-    display: block;
-    margin: auto;
+  .search {
+    background-image: url("https://wallpapertag.com/wallpaper/full/5/2/f/350892-top-website-background-1920x1234.jpg");
   }
 
   .js-search-form p {
@@ -345,5 +341,16 @@ h3 {
     display: block;
     margin: auto;
     margin-top: 100px;
+  }
+
+  .landing h2 {
+    color: black;
+    font-size: 30px;
+    font-family: Open-sans;
+    text-align: center;
+    padding-top: 10px;
+    letter-spacing: 3px;
+    color: white;
+    margin-top: 75px;
   }
 }

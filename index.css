@@ -326,6 +326,7 @@ h3 {
     margin-top: 25px;
     margin: 0;
     min-width: 380px;
+    background-repeat: repeat-x;
   }
 
   .js-search-form p {

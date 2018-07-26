@@ -118,9 +118,6 @@ progress {
   margin-top: 25px;
 }
 
-.search {
-}
-
 .info-link {
   color: white;
   font-family: Open-sans;
@@ -195,12 +192,13 @@ body {
   font-family: Open-sans;
   font-size: 20px;
   border-radius: 6px;
-  background-color: white;
+  background-color: rgb(85, 170, 126);
+  color: white;
 }
 
 button:hover {
   cursor: pointer;
-  background-color: #e6e6e6;
+  background-color: rgb(59, 129, 93);
   transition: 0.3s;
 }
 
@@ -248,11 +246,13 @@ input:focus::-webkit-input-placeholder {
   height: 40px;
   font-family: Open-sans;
   font-size: 20px;
-  border-radius: 13px;
-  background-color: white;
+  border-radius: 10px;
+  background-color: rgb(85, 170, 126);
   display: block;
   margin: auto;
   margin-top: 150px;
+  opacity: 0.85;
+  color: white;
 }
 
 h2 {
@@ -299,6 +299,19 @@ h3 {
 .js-search-form p {
   font-size: 15px;
   padding-top: 20px;
+}
+
+.footer {
+  background-color: #c7c6c5;
+  text-align: center;
+  padding: 15px;
+  margin-top: 200px;
+  color: white;
+}
+
+.footerlink:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 @media (max-width: 500px) {

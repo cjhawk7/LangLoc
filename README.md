@@ -8,7 +8,7 @@ I wanted to make an app that would allow users to find the population density of
 
 ## Screenshots
 
-![screenshot](<![landingimage](https://user-images.githubusercontent.com/32127270/43234265-f0997a7e-902f-11e8-8225-36ab88a26487.png)>)
+![screenshot](https://user-images.githubusercontent.com/32127270/43234265-f0997a7e-902f-11e8-8225-36ab88a26487.png)
 
 ## Summary
 

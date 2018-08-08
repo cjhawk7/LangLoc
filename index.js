@@ -452,7 +452,7 @@ function getDataFromApi(searchTerm, callback) {
 }
 
 function geoCode(censusData = []) {
-  console.log(globalI, censusData);
+  // console.log(globalI, censusData);
   if (censusData.length === 0) {
     $("#errorMessage").text(
       "There is no data for the selected language, please choose another."
@@ -503,7 +503,7 @@ function geocodeCallback(cityData, arrayLength) {
     const progressElement = $("progress");
     const progressValue = progressElement.val();
     progressElement.val(progressValue + 100 / arrayLength);
-    console.count();
+    // console.count();
 
     markerlocCounter++;
 

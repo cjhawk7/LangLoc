@@ -1,3 +1,5 @@
+'use strict'
+
 const myLookupObjects = {
   "Jamaican Creole": 601,
   Krio: 602,
@@ -399,12 +401,12 @@ let map;
 let popupWindow = null;
 let markerlocCounter = 0;
 
-$(".landingbutton").on("click", function() {
+$(".landingbutton").on("click", function () {
   $(".search").removeClass("hidden");
   $(".landing").addClass("hidden");
 });
 
-initMap = function() {
+initMap = function () {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
     center: uluru
@@ -533,7 +535,7 @@ function geocodeCallback(cityData, arrayLength) {
         maxWidth: 200
       });
 
-      marker.addListener("click", function() {
+      marker.addListener("click", function () {
         marker.infowindow = infowindow;
         let markersArray = markerCluster.getMarkers();
         for (let i = 0; i < markersArray.length; i++) {

@@ -406,7 +406,7 @@ $(".landingbutton").on("click", function () {
   $(".landing").addClass("hidden");
 });
 
-initMap = function () {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
     center: uluru

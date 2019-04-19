@@ -454,7 +454,7 @@ function getDataFromApi(searchTerm, callback) {
 }
 
 function geoCode(censusData = []) {
-  // console.log(globalI, censusData);
+
   if (censusData.length === 0) {
     $("#errorMessage").text(
       "There is no data for the selected language, please choose another."
@@ -477,7 +477,7 @@ function geoCode(censusData = []) {
     };
     geocodeAddress(
       cityData.cityname,
-      geocodeCallback(cityData, censusData.length)
+      geocodeCallback(cityData, censusData.length, censusData)
     );
   }
   globalI = globalI + i;
@@ -500,12 +500,11 @@ function geocodeAddress(cityStateString, callback) {
   $.ajax(param);
 }
 
-function geocodeCallback(cityData, arrayLength) {
+function geocodeCallback(cityData, arrayLength, censusData) {
   return function markerLoc(results, status) {
     const progressElement = $("progress");
     const progressValue = progressElement.val();
     progressElement.val(progressValue + 100 / arrayLength);
-    // console.count();
 
     markerlocCounter++;
 
@@ -527,12 +526,13 @@ function geocodeCallback(cityData, arrayLength) {
       markerCluster.addMarker(marker);
 
       let contentString = `<div class = "info-content">
-            <h3>${cityData.stats} native speakers in ${cityData.cityname}</h3>
+            <h3 style="font-size:18px">There are roughly ${cityData.stats} native ${censusData[1][2]} speakers in ${cityData.cityname}</h3>
             </div>`;
 
       let infowindow = new google.maps.InfoWindow({
         content: contentString,
         maxWidth: 200
+
       });
 
       marker.addListener("click", function () {
